@@ -2,15 +2,15 @@
 
 module Main where
 
--- import Criterion.Main
+import Criterion.Main
 import Data.Function
 import Data.List
 import Data.List.Split
--- import Data.Coerce
+import Data.Coerce
 import Data.Text qualified as T
 import System.Environment
 import System.IO
--- import Test.QuickCheck
+import Test.QuickCheck
 
 hrMain :: IO ()
 hrMain = do
@@ -31,26 +31,26 @@ hrMain = do
   hFlush fptr
   hClose fptr
 
--- criterionMain :: IO ()
--- criterionMain =
---   defaultMain
---     [ bgroup "birthday0" $ mkBenches birthday0,
---       bgroup "birthday1" $ mkBenches birthday1,
---       bgroup "birthday2" $ mkBenches birthday2
---     ]
---   where
---     n = 20
---     xs = cycle [1 .. n]
---     mkBench f len = bench (show len) $ nf (f (take len xs) (sum [1 .. n])) n
---     mkBenches f = map (mkBench f) cases
---     cases = [5000]
+criterionMain :: IO ()
+criterionMain =
+  defaultMain
+    [ bgroup "birthday0" $ mkBenches birthday0,
+      bgroup "birthday1" $ mkBenches birthday1,
+      bgroup "birthday2" $ mkBenches birthday2
+    ]
+  where
+    n = 20
+    xs = cycle [1 .. n]
+    mkBench f len = bench (show len) $ nf (f (take len xs) (sum [1 .. n])) n
+    mkBenches f = map (mkBench f) cases
+    cases = [5000]
 
--- prop_birthday_is_sound :: ([Int] -> Int -> Int -> Int) -> NonEmptyList (NonNegative Int) -> Positive Int -> Positive Int -> Bool
--- prop_birthday_is_sound f (coerce -> s) (Positive d) (Positive m) = birthday0 s d m == f s d m
+prop_birthday_is_sound :: ([Int] -> Int -> Int -> Int) -> NonEmptyList (NonNegative Int) -> Positive Int -> Positive Int -> Bool
+prop_birthday_is_sound f (coerce -> s) (Positive d) (Positive m) = birthday0 s d m == f s d m
 
--- quickCheckMain = do
---   quickCheck (withMaxSuccess 10000 (prop_birthday_is_sound birthday1))
---   quickCheck (withMaxSuccess 10000 (prop_birthday_is_sound birthday2))
+quickCheckMain = do
+  quickCheck (withMaxSuccess 10000 (prop_birthday_is_sound birthday1))
+  quickCheck (withMaxSuccess 10000 (prop_birthday_is_sound birthday2))
 
 -- | nobrain/"reference"
 birthday0 :: [Int] -> Int -> Int -> Int
