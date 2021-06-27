@@ -84,3 +84,25 @@ birthday = birthday2
 -- main = quickCheckMain
 main = criterionMain
 -- main = hrMain
+
+{-
+
+benchmarking birthday0/5000
+time                 25.64 ms   (25.62 ms .. 25.68 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 25.63 ms   (25.63 ms .. 25.65 ms)
+std dev              22.26 μs   (11.57 μs .. 36.62 μs)
+
+benchmarking birthday1/5000
+time                 24.93 ms   (24.93 ms .. 24.94 ms)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 24.93 ms   (24.93 ms .. 24.94 ms)
+std dev              4.828 μs   (3.217 μs .. 6.823 μs)
+
+benchmarking birthday2/5000
+time                 64.55 μs   (64.48 μs .. 64.62 μs)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 64.61 μs   (64.54 μs .. 64.71 μs)
+std dev              265.4 ns   (187.4 ns .. 372.0 ns)
+
+-}
